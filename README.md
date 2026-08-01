@@ -3,7 +3,7 @@
 Fine-tuned **Qwen2-VL-2B-Instruct** with **QLoRA** to extract structured JSON
 (line items and total) from receipt images. Trained on a single Kaggle T4 GPU.
 
-Adapter: [huggingface.co/your-username/qwen2vl-receipt-lora](REPLACE)
+Adapter: [huggingface.co/chai1me/qwen2vl-receipt-lora]
 
 ## Result (60 held-out receipts, unseen during training)
 
