@@ -3,7 +3,7 @@
 Fine-tuned **Qwen2-VL-2B-Instruct** with **QLoRA** to extract structured JSON
 (line items and total) from receipt images. Trained on a single Kaggle T4 GPU.
 
-Adapter: [[huggingface.co/chai1me/qwen2vl-receipt-lora](https://huggingface.co/chai1me/qwen2vl-receipt-lora)]
+Adapter: [huggingface.co/chai1me/qwen2vl-receipt-lora](https://huggingface.co/chai1me/qwen2vl-receipt-lora)
 
 ## Result (60 held-out receipts, unseen during training)
 
@@ -25,6 +25,15 @@ spacing (`Rp29,090` vs `Rp 29,090`). See `samples/` for side-by-side predictions
   400 train / 60 validation. Ground truth flattened to `{items:[{name,price}], total}`.
 - **Eval:** JSON validity, exact-match on total, and character-level edit ratio
   on a held-out split the model never saw during training.
+  
+## Sample predictions
+
+Six held-out receipts with model output beside the input image (`samples/`).
+
+Totals were extracted correctly on all six shown. Item-level extraction is strong
+but imperfect: it occasionally drops zero-price lines (free add-ons) and can
+mis-split payment rows on cluttered receipts. This matches the aggregate result:
+total exact-match (90%) is more reliable than full item-list extraction.
 
 ## Retrieval experiment (negative result)
 
@@ -38,6 +47,9 @@ Removed from the final pipeline.
 - `train_extract.ipynb` — data prep, QLoRA fine-tune, evaluation
 - `eval_metrics.json` — held-out metrics
 - `samples/` — qualitative prediction examples (input receipt + prediction vs gold)
+
+  
+
 
 ## Limitations
 
